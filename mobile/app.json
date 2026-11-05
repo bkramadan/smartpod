@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "Smart Pod",
+    "slug": "smartpod",
+    "scheme": "smartpod",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "plugins": ["expo-router"],
+    "ios": { "supportsTablet": true, "bundleIdentifier": "com.example.smartpod" },
+    "android": { "package": "com.example.smartpod" }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "smartpod",
+  "private": true,
+  "description": "Smart Pod prototype: backend, web dashboards, mobile app and Pod simulator. Each folder is its own project; these scripts are shortcuts.",
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix web install && npm --prefix mobile install",
+    "backend": "npm --prefix backend run dev",
+    "web": "npm --prefix web run dev",
+    "mobile": "npm --prefix mobile start",
+    "pod": "node pod-simulator/pod.mjs",
+    "test": "npm --prefix backend test"
+  }
+}

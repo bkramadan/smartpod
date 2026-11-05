@@ -1,0 +1,12 @@
+{
+  "name": "smartpod-pod-simulator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pretends to be the Smart Pod hardware, using the same Device API the real Pod will use.",
+  "type": "module",
+  "scripts": {
+    "start": "node pod.mjs",
+    "now": "node pod.mjs --now",
+    "jam": "node pod.mjs --jam"
+  }
+}
