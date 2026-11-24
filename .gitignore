@@ -1,9 +1,35 @@
+# Dependencies and build output
 node_modules/
 dist/
+coverage/
+*.tsbuildinfo
+
+# Secrets: never commit real environment files (the .env.example files are committed)
+.env
+.env.*
+!.env.example
+
+# Expo / React Native
 .expo/
 web-build/
+expo-env.d.ts
+.metro-health-check*
+mobile/ios/
+mobile/android/
+*.jks
+*.p8
+*.p12
+*.key
+*.pem
+*.mobileprovision
+
+# Logs and OS files
 *.log
 .DS_Store
-.env
-.env.local
-backend/data/*.json
+
+# Old prototype leftovers (mock data file)
+backend/data/
+
+# Editor settings
+.idea/
+.vscode/

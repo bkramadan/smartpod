@@ -1,13 +1,39 @@
 {
   "name": "smartpod",
   "private": true,
-  "description": "Smart Pod prototype: backend, web dashboards, mobile app and Pod simulator. Each folder is its own project; these scripts are shortcuts.",
+  "description": "Smart Pod: backend API, web dashboard, mobile app and Pod simulator in one repository.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "workspaces": [
+    "shared",
+    "backend",
+    "web",
+    "mobile",
+    "pod-simulator"
+  ],
   "scripts": {
-    "install:all": "npm --prefix backend install && npm --prefix web install && npm --prefix mobile install",
-    "backend": "npm --prefix backend run dev",
-    "web": "npm --prefix web run dev",
-    "mobile": "npm --prefix mobile start",
-    "pod": "node pod-simulator/pod.mjs",
-    "test": "npm --prefix backend test"
+    "dev:backend": "npm run dev -w backend",
+    "dev:web": "npm run dev -w web",
+    "dev:mobile": "npm run start -w mobile",
+    "pod": "npm run start -w pod-simulator",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.19.2",
+    "eslint": "10.14.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.14.0",
+    "prettier": "3.9.10",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.2"
   }
 }

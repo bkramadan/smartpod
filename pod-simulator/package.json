@@ -1,12 +1,19 @@
 {
-  "name": "smartpod-pod-simulator",
+  "name": "@smartpod/pod-simulator",
   "version": "0.1.0",
   "private": true,
-  "description": "Pretends to be the Smart Pod hardware, using the same Device API the real Pod will use.",
+  "description": "Pretends to be the Smart Pod hardware by talking to the backend like a real Pod would.",
   "type": "module",
   "scripts": {
-    "start": "node pod.mjs",
-    "now": "node pod.mjs --now",
-    "jam": "node pod.mjs --jam"
+    "start": "node --env-file-if-exists=.env src/index.ts",
+    "typecheck": "tsc",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@smartpod/shared": "0.1.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "vitest": "5.1.0"
   }
 }

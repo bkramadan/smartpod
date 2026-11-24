@@ -1,0 +1,20 @@
+{
+  "name": "@smartpod/shared",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Data shapes (Zod schemas) and the API client shared by the backend, web, mobile and Pod simulator.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "vitest": "5.1.0"
+  }
+}

@@ -2,14 +2,11 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "paths": {
-      "@smartpod/shared": [
-        "../shared/src/index.ts"
-      ]
-    }
+    "noUncheckedIndexedAccess": true,
+    // Needed because the shared package writes its imports with ".ts" at the end.
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "types": ["jest", "node"]
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"]
 }

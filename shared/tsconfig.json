@@ -1,0 +1,8 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    // Shared code also runs in the browser and on phones, so allow browser types (fetch, URL).
+    "lib": ["es2024", "dom"]
+  },
+  "include": ["src", "test"]
+}

@@ -1,12 +1,15 @@
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { fileURLToPath } from 'node:url';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [react()],
-  resolve: {
-    // Shared types live outside this folder. They are type-only, so nothing is bundled.
-    alias: { '@smartpod/shared': fileURLToPath(new URL('../shared/src/index.ts', import.meta.url)) },
+  server: {
+    // In development, the browser calls "/api/..." on the web server and Vite forwards
+    // it to the backend. Same address for both means no CORS setup is needed.
+    proxy: { '/api': 'http://127.0.0.1:4000' },
   },
-  server: { port: 5173, host: true },
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/test-setup.ts'],
+  },
 });

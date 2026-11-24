@@ -1,0 +1,27 @@
+{
+  // Shared TypeScript settings for the Node.js parts (shared, backend, pod-simulator).
+  // Node.js runs our .ts files directly ("type stripping"), so TypeScript only checks
+  // types here and never writes output files (noEmit).
+  "compilerOptions": {
+    "target": "es2024",
+    "lib": ["es2024"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "types": ["node"],
+
+    // Strictest useful checks: catch mistakes before the code runs.
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // Only allow TypeScript that Node.js can run directly (imports end in .ts).
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
+  }
+}

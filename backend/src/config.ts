@@ -1,30 +1,21 @@
+import { parseEnv } from '@smartpod/shared';
+import { z } from 'zod';
+
+const ConfigSchema = z.object({
+  HOST: z.string().min(1).default('127.0.0.1'),
+  PORT: z.coerce.number().int().min(1).max(65535).default(4000),
+  LOG_LEVEL: z
+    .enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace'])
+    .default('info'),
+});
+
+/** Settings the backend needs, read from environment variables. */
+export type Config = z.infer<typeof ConfigSchema>;
+
 /**
- * Settings, read once from environment variables (or a .env file).
- * See .env.example for what each one does.
+ * Read and check the settings. Stops the server at start-up if a value is invalid,
+ * instead of failing later in a confusing way.
  */
-import { existsSync, readFileSync } from 'node:fs';
-
-/** Minimal .env loader so the backend needs no extra library. */
-function loadDotEnv(path = '.env') {
-  if (!existsSync(path)) return;
-  for (const line of readFileSync(path, 'utf8').split(/\r?\n/)) {
-    const match = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/);
-    if (!match) continue;
-    const [, key, raw] = match;
-    if (process.env[key] === undefined) process.env[key] = raw.replace(/^["']|["']$/g, '');
-  }
+export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
+  return parseEnv(ConfigSchema, env);
 }
-
-loadDotEnv();
-
-export const config = {
-  port: Number(process.env.PORT ?? 4000),
-  anthropicApiKey: process.env.ANTHROPIC_API_KEY || '',
-  claudeModel: process.env.CLAUDE_MODEL || 'claude-haiku-4-5-20251001',
-  missedAfterMinutes: Number(process.env.MISSED_AFTER_MINUTES ?? 60),
-  dataFile: process.env.DATA_FILE ?? 'data/demo-db.json',
-  /** How often the background job runs (reminders, missed doses). */
-  tickSeconds: 30,
-};
-
-export type Config = typeof config;
