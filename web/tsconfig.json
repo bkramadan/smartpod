@@ -7,6 +7,8 @@
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "types": ["vite/client"],
+    // "@/..." means "src/...". Keep in sync with the alias in vite.config.ts.
+    "paths": { "@/*": ["./src/*"] },
 
     "strict": true,
     "noUncheckedIndexedAccess": true,
